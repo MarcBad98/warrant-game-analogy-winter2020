@@ -1,0 +1,9 @@
+{% extends 'wga/admin/container.html' %}
+{% load static %}
+{% block body_content %}
+<div id="warnings"></div>
+{% include 'wga/admin/form.html' %}
+<script>
+    $.getScript("{% static 'wga/admin/add_game.js' %}");
+</script>
+{% endblock %}

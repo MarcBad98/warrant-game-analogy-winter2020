@@ -1,0 +1,56 @@
+{% load static %}
+{% load widget_tweaks %}
+<div class="alert alert-info">
+    <p>
+        {% if game.turn == 3 %}
+        This game is <strong>completed</strong>. See move history for more details.
+        {% elif game.turn == 2 %}
+        A <strong>report</strong> was submitted and is awaiting moderator review.
+        {% elif is_critic and game.turn == 0 %}
+        <strong>It's now your turn!</strong>
+        {% elif not is_critic and game.turn == 1 %}
+        <strong>It's now your turn!</strong>
+        {% else %}
+        <strong>It's not your turn.</strong>
+        {% endif %}
+    </p>
+    <ul id="message-list" style="list-style:none;">
+        {% for message in messages %} <li class="message">{{ message }}</li>{% endfor %}
+    </ul>
+</div>
+{% if game.context != 'Not Turn' %}
+{% for field in form %}
+{% for error in field.errors %}
+<div class="alert alert-danger alert-dismissible">
+    <a class="close" data-dismiss="alert">&times;</a>
+    {{ error|escape }}
+</div>
+{% endfor %}
+{% endfor %}
+<form id="move-form">
+    {% if game.context == 'Create Rule' %}
+        {% include 'wga/user/game/forms/create_rule.html' %}
+    {% elif is_critic and game.context == 'Idle' %}
+        {% include 'wga/user/game/forms/move_choice.html' %}
+        {% include 'wga/user/game/forms/attack.html' %}
+        {% include 'wga/user/game/forms/update_facts.html' %}
+        {% include 'wga/user/game/forms/add_facts.html' %}
+        {% include 'wga/user/game/forms/report.html' %}
+        {% include 'wga/user/game/forms/pass.html' %}
+    {% elif not is_critic and game.context == 'Idle' %}
+        {% include 'wga/user/game/forms/move_choice.html' %}
+        {% include 'wga/user/game/forms/update_rule.html' %}
+        {% include 'wga/user/game/forms/update_facts.html' %}
+        {% include 'wga/user/game/forms/add_facts.html' %}
+        {% include 'wga/user/game/forms/report.html' %}
+        {% include 'wga/user/game/forms/pass.html' %}
+    {% elif game.context == 'Attack Response' %}
+        {% include 'wga/user/game/forms/attack_response.html' %}
+    {% elif game.context == 'Proposed Edit' %}
+        {% include 'wga/user/game/forms/proposed_edit.html' %}
+    {% elif game.context == 'Proposed Add' %}
+        {% include 'wga/user/game/forms/proposed_add.html' %}
+    {% endif %}
+    <button id="move-submit" class="btn btn-default btn-lg" type="submit">Submit</button>
+</form>
+{% endif %}

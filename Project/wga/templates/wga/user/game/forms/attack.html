@@ -1,0 +1,26 @@
+{% load widget_tweaks %}
+<!-- ATTACK FORM -->
+<div id="attack" style="display:none;">
+    <div class="well">
+        {% include 'wga/user/game/instructions.html' with game_context='Choose Attack' %}
+        <div class="form-group">
+            <b>Which link would you like to attack?</b>
+        {% for radio in form.link %}
+        <label class="radio-inline" for="{{ radio.id_for_label }}">
+            {{ radio.tag }}{{ radio.choice_label }}
+        </label>
+        {% endfor %}
+        </div>
+        <div id="1-instructions" style="display:none;"><br>{% include 'wga/user/game/instructions.html' with game_context='L1' %}</div>
+        <div id="2-instructions" style="display:none;"><br>{% include 'wga/user/game/instructions.html' with game_context='L2' %}</div>
+        <div id="3-instructions" style="display:none;"><br>{% include 'wga/user/game/instructions.html' with game_context='L3' %}</div>
+        <div id="4-instructions" style="display:none;"><br>{% include 'wga/user/game/instructions.html' with game_context='L4' %}</div>
+        <div id="5-instructions" style="display:none;"><br>{% include 'wga/user/game/instructions.html' with game_context='L5' %}</div>
+        <div id="explain-attack" style="display:none;">
+            <div class="form-group">
+                {{ form.explain_attack.label_tag }}
+                {% render_field form.explain_attack class="form-control" %}
+            </div>
+        </div>
+    </div>
+</div>

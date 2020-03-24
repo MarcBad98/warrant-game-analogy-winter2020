@@ -1,0 +1,19 @@
+{% load widget_tweaks %}
+{% for field in form %}
+{% for error in field.errors %}
+<div class="alert alert-danger alert-dismissible">
+    <a class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    {{ error|escape }}
+</div>
+{% endfor %}
+{% endfor %}
+<form id="user-form" method="POST">
+    {% csrf_token %}
+    {% for field in form %}
+    <div class="form-group">
+        {{ field.label_tag }}
+        {% render_field field class="form-control" %}
+    </div>
+    {% endfor %}
+    <button class="btn btn-default btn-lg" type="submit">Submit</button>
+</form>

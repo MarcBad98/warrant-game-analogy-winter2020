@@ -1,0 +1,41 @@
+<ul class="nav navbar-nav">
+    <li><a href="{% url 'user:login' %}">Login</a></li>
+    <li><a href="{% url 'user:faq' %}">FAQ</a></li>
+    {% if user %}
+    <li><a href="{% url 'user:instructions' %}">Instructions</a></li>
+    {% endif %}
+    {% if user.group.case == 'Non-control' %}
+    {% for intermediary in intermediaries_a %}
+    <li>
+        <a href="{% url 'user:game' url_key=intermediary.key %}">
+            {{ intermediary.advocacy.scenario.name }}
+            <span class="game-status badge">
+                {% if intermediary.advocacy.turn == 3 %}Completed
+                {% elif intermediary.advocacy.turn == 2 %}Suspended
+                {% elif intermediary.advocacy.turn == 1 %}Your Turn!
+                {% else %}Waiting
+                {% endif %}
+            </span>
+        </a>
+    </li>
+    {% endfor %}
+    {% for intermediary in intermediaries_c %}
+    <li>
+        <a href="{% url 'user:game' url_key=intermediary.key %}">
+            {{ intermediary.criticism.scenario.name }}
+            <span class="game-status badge">
+                {% if intermediary.criticism.turn == 3 %}Completed
+                {% elif intermediary.criticism.turn == 2 %}Suspended
+                {% elif intermediary.criticism.turn == 0 %}Your Turn!
+                {% else %}Waiting
+                {% endif %}
+            </span>
+        </a>
+    </li>
+    {% endfor %}
+    {% elif user.group.case == 'Control' %}
+    {% for intermediary in intermediaries_chat %}
+    <li><a href="{% url 'user:game' url_key=intermediary.key %}">{% if intermediary.advocacy %}{{ intermediary.advocacy.scenario.name }}{% else %}{{ intermediary.criticism.scenario.name }}{% endif %}</a></li>
+    {% endfor %}
+    {% endif %}
+</ul>

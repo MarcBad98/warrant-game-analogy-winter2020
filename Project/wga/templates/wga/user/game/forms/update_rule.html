@@ -1,0 +1,19 @@
+{% load widget_tweaks %}
+<!-- UPDATE RULE FORM -->
+<div id="update-rule" style="display:none;">
+	<div class="well">
+		{% include 'wga/user/game/instructions.html' with game_context='Update Rule' %}
+		<div class="form-group">
+			<div class="input-group">
+				<span class="input-group-addon"><b>IF</b></span>
+				{% render_field form.antecedent class="form-control" %}
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="input-group">
+				<span class="input-group-addon"><b>THEN</b></span>
+				{% render_field form.consequent class="form-control" %}
+			</div>
+		</div>
+	</div>
+</div>

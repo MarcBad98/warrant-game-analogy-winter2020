@@ -1,0 +1,53 @@
+{% extends 'wga/admin/container.html' %}
+{% load static %}
+{% block body_content %}
+<h4>{{ object.name }} ({{ object.case }})</h4>
+<table class="table">
+    <thead>
+    <tr>
+        <th class="text-center" style="width:30%;">Scenario</th>
+        <th class="text-center" style="width:30%;">Advocate</th>
+        <th class="text-center" style="width:30%;">Critic</th>
+        <th class="text-center" style="width:10%;">State</th>
+    </tr>
+    </thead>
+    <tbody>
+   {% for game in object.game_set.all|dictsort:"id" %}
+    <tr class="text-center">
+        <td>
+            <p>{{ game.scenario }}</p>
+            <p>{% if game.turn == 4 %}{{ game.chat }}{% endif %}</p>
+        </td>
+        <td>
+            <p>{% if game.turn == 3 %}{{ game.adv_info.user }}{% else %}<a href="{% url 'moderator:group-edit' group_name=group.name url_key=game.adv_info.key %}">{{ game.adv_info.user }}</a>{% endif %}</p>
+            <p>{% if game.adv_info.user.assigned %}&#10004;{% endif %}{% if game.adv_info.user.approved %}&#10004;{% endif %}</p>
+            <p>{{ game.adv_info.user.key }}</p>
+            {% if object.case == 'Non-control' %}
+            <button type="button" class="btn btn-default btn-sm" onclick="window.location.href = '{% url 'moderator:messages' group_name=group.name url_key=game.adv_info.key %}';">
+                Send Message
+            </button>
+            {% endif %}
+        </td>
+        <td>
+            <p>{% if game.turn == 3 %}{{ game.crt_info.user }}{% else %}<a href="{% url 'moderator:group-edit' group_name=group.name url_key=game.crt_info.key %}">{{ game.crt_info.user }}</a>{% endif %}</p>
+            <p>{% if game.crt_info.user.assigned %}&#10004;{% endif %}{% if game.crt_info.user.approved %}&#10004;{% endif %}</p>
+            <p>{{ game.crt_info.user.key }}</p>
+            {% if object.case == 'Non-control' %}
+            <button type="button" class="btn btn-default btn-sm" onclick="window.location.href = '{% url 'moderator:messages' group_name=group.name url_key=game.crt_info.key %}';">
+                Send Message
+            </button>
+            {% endif %}
+        </td>
+        <td>
+            {% if game.turn == 4 %} <span class="text-success">Chat Room</span>
+            {% elif game.turn == 3 %} <span class="text-success">Completed</span>
+            {% elif game.turn == 2 %} <span class="text-danger">Moderated</span>
+            {% elif game.turn == 1 %} <span class="text-success">Advocate's Turn</span><br>{{ game.context }}
+            {% elif game.turn == 0 %} <span class="text-success">Critic's Turn</span><br>{{ game.context }}
+            {% endif %}
+        </td>
+    </tr>
+   {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

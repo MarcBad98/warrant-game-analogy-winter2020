@@ -1,0 +1,198 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Player</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>             <!-- JQuery -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"> <!-- Bootstrap 3 CSS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>          <!-- Bootstrap 3 JS -->
+    <style>
+        .errorlist {
+            list-style: none;
+        }
+        
+        .arg-graphic {
+            width: 100%;
+        }
+        
+        .arg-graphic tr td {
+            padding: 10px;
+        }
+        
+        .arg-graphic thead tr th {
+            text-align: center;
+        }
+        
+        .arg-graphic .fact-table {
+            background-color: #f5f5f5;
+        }
+        
+        .message:before {
+            content: "\e111";
+            font-family: 'Glyphicons Halflings';
+            font-size: 9px;
+            float: left;
+            margin-top: 4px;
+            margin-left: -17px;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-default navbar-static-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Post-Session Report</a>
+        </div>
+    </div>
+</nav>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    {{ game }}
+                </div>
+                <div class="panel-body">
+
+
+
+
+<div class="row">
+    <div class="col-md-6">
+        <table class="arg-graphic">
+            <thead>
+            <tr>
+                <th style="width:35%;">Scenario 1</th>
+                <th></th>
+                <th style="width:25%;">Current Rule</th>
+                <th></th>
+                <th style="width:35%;">Scenario 2</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr align="center">
+                <td>
+                    <table class="table fact-table">
+                        <thead>
+                        <tr>
+                            <th>Facts</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>{% for fact in game.factpair_set.all %}<p>{{ fact.source_fact }}</p>{% endfor %}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </td>
+                <td>
+                    <p><font color="red"><b>L.1</b></font></p>
+                    <span class="glyphicon glyphicon-arrow-right" style="font-size:24px"></span>
+                </td>
+                <td>
+                    <p><b>IF</b></p>
+                    <p>{{ game.rule_antecedent }}</p>
+                </td>
+                <td>
+                    <p><font color="red"><b>L.2</b></font></p>
+                    <span class="glyphicon glyphicon-arrow-left" style="font-size:24px"></span>
+                </td>
+                <td>
+                    <table class="table fact-table">
+                        <thead>
+                        <tr>
+                            <th>Facts</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>{% for fact in game.factpair_set.all %}<p>{{ fact.target_fact }}</p>{% endfor %}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            <tr align="center">
+                <td>and</td>
+                <td></td>
+                <td>
+                    <p><font color="red"><b>L.3</b></font></p>
+                    <p>implies</p>
+                    <span class="glyphicon glyphicon-arrow-down" style="font-size:24px"></span>
+                </td>
+                <td></td>
+                <td>and</td>
+            </tr>
+            <tr align="center">
+                <td>
+                    <table class="table fact-table">
+                        <thead>
+                        <tr>
+                            <th>Conclusion</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>{{ game.scenario.source_conclusion }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </td>
+                <td>
+                    <p><font color="red"><b>L.4</b></font></p>
+                    <span class="glyphicon glyphicon-arrow-left" style="font-size:24px"></span>
+                </td>
+                <td>
+                    <p><b>THEN</b></p>
+                    <p>{{ game.rule_consequent }}</p>
+                </td>
+                <td>
+                    <p><font color="red"><b>L.5</b></font></p>
+                    <span class="glyphicon glyphicon-arrow-right" style="font-size:24px"></span>
+                </td>
+                <td>
+                    <table class="table fact-table">
+                        <thead>
+                        <tr>
+                            <th>Conclusion</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>{{ game.scenario.target_conclusion }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-6">
+        {% if game.move_set.all|length != 0 %}
+        <div class="panel-group">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="panel-body">
+                        <ul>
+                            {% for move in game.move_set.all %}<li>({{ move.date|time:"H:i" }}) {{ move }}</li>{% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

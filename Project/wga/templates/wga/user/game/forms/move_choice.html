@@ -1,0 +1,10 @@
+{% load widget_tweaks %}
+<!-- MOVE CHOICE FORM -->
+<div class="well">
+    <div class="form-group">
+        <b>Which move would you like to make?</b>
+        {% for radio in form.move_choice %}
+        <div class="radio">{{ radio }}</div>
+        {% endfor %}
+    </div>
+</div>

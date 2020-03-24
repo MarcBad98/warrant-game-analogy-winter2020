@@ -1,0 +1,11 @@
+{% extends 'wga/admin/container.html' %}
+{% load static %}
+{% block body_content %}
+<p>
+    You are about to shuffle around the players within the {{ group.name }} game session. By doing so, each player's
+    interface will be replaced by a possibly new scenario and new chat room (note that the current implementation will
+    randomly assign the scenario; it is not guaranteed that they will not receive a duplicate scenario or play against
+    a different partner).
+</p>
+{% include 'wga/admin/form.html' %}
+{% endblock %}

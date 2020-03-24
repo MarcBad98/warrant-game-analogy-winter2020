@@ -1,0 +1,493 @@
+<div>
+
+	{% if game_context == 'Report' %}
+
+	<!-- INSTRUCTIONS FOR CONTACTING THE ADMINISTRATORS -->
+	<p>Reasons for contacting the administrators:</p>
+	<ul>
+		<li>Your opponent has made a move that is abusive, indecent, or severely contrary to the spirit of the game</li>
+		<li>You cannot continue with the game and must dropout prematurely</li>
+		<li>You are experiencing technical issues with the website</li>
+	</ul>
+	<p>
+		By doing so, this game will be temporarily suspended as an administrator reviews the problem. <strong>Note that
+		any theoretical questions about the research or the game must be done in the FAQ chat.</strong>
+	</p>
+
+	{% elif game_context == 'Create Rule' %}
+
+	<!-- INSTRUCTIONS FOR CREATING A RULE -->
+	<p>
+		You must create a rule that you think explains the two conclusions given. Your rule must be in
+		<b>IF</b> x <b>THEN</b> y form. Choose a rule that will serve as a good starting point. You will have
+		chances to revise this rule as this game is played.
+	</p>
+	<br>
+	{% include 'wga/user/game/modals.html' with name='rule' %}
+	<br>
+	<br>
+
+	{% elif game_context == 'Choose Attack' %}
+
+	<!-- INSTRUCTIONS FOR CHOOSING THE LINK TO ATTACK -->
+	<p>
+		Look at the argument graphic. The links between the different parts of the argument are labeled with
+		<b><font color="red">red text</font></b>. You can attack one of those links if they are weak (the rules for
+		how to attack them differ slightly based on the link).
+	</p>
+
+	{% elif game_context == 'L1' %}
+
+	<!-- INSTRUCTIONS FOR ATTACKING LINK L1 -->
+	<table class="arg-graphic" style="border:dotted 1px black;">
+		<thead>
+		<tr>
+			<th style="width:33%;"></th>
+			<th style="width:33%;"></th>
+			<th style="width:33%;"></th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr align="center">
+			<td>{% for fact in game.factpair_set.all %}<p>{{ fact.source_fact }}</p>{% endfor %}</td>
+			<td><span class="glyphicon glyphicon-arrow-right" style="font-size:24px"></span></td>
+			<td><p>{{ game.rule_antecedent }}</p></td>
+		</tr>
+		</tbody>
+	</table>
+	<br>
+	<p>
+		In order to attack this successfully, you must demonstrate that from scenario 1's facts alone, you
+		cannot conclude the rule's antecedent (the IF part of the rule). <strong><i>Consider only the rule's
+		antecedent and scenario 1's facts as written.</i></strong>
+	</p>
+	<p>
+		Are there additional facts that are necessary but missing? Is the logical leap between the two too much?
+		Is it possible for scenario 1's facts to be true but the rule's antecedent to be false? Explain carefully;
+		this will be reviewed by your opponent and rejected if they believe it is unfair.
+	</p>
+	<br>
+	{% include 'wga/user/game/modals.html' with name='L1' %}
+	<br>
+	<br>
+
+	{% elif game_context == 'L2' %}
+
+	<!-- INSTRUCTIONS FOR ATTACKING LINK L2 -->
+	<table class="arg-graphic" style="border:dotted 1px black;">
+		<thead>
+		<tr>
+			<th style="width:33%;"></th>
+			<th style="width:33%;"></th>
+			<th style="width:33%;"></th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr align="center">
+			<td><p>{{ game.rule_antecedent }}</p></td>
+			<td><span class="glyphicon glyphicon-arrow-left" style="font-size:24px"></span></td>
+			<td>{% for fact in game.factpair_set.all %}<p>{{ fact.target_fact }}</p>{% endfor %}</td>
+		</tr>
+		</tbody>
+	</table>
+	<br>
+	<p>
+		In order to attack this successfully, you must demonstrate that from scenario 2's facts alone, you
+		cannot conclude the rule's antecedent (the IF part of the rule). <strong><i>Consider only the rule's
+		antecedent and scenario 2's facts as written.</i></strong>
+	</p>
+	<p>
+		Are there additional facts that are necessary but missing? Is the logical leap between the two too much?
+		Is it possible for scenario 2's facts to be true but the rule's antecedent to be false? Explain carefully;
+		this will be reviewed by your opponent and rejected if they believe it is unfair.
+	</p>
+	<br>
+	{% include 'wga/user/game/modals.html' with name='L2' %}
+	<br>
+	<br>
+
+	{% elif game_context == 'L3' %}
+
+	<!-- INSTRUCTIONS FOR ATTACKING LINK L3 -->
+	<table class="arg-graphic" style="border:dotted 1px black;">
+		<thead>
+		<tr>
+			<th style="width:33%;"></th>
+			<th style="width:33%;"></th>
+			<th style="width:33%;"></th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr align="center">
+			<td></td>
+			<td><p>{{ game.rule_antecedent }}</p></td>
+			<td></td>
+		</tr>
+		<tr align="center">
+			<td></td>
+			<td>
+				<p>implies</p>
+				<span class="glyphicon glyphicon-arrow-down" style="font-size:24px"></span>
+			</td>
+			<td></td>
+		</tr>
+		<tr align="center">
+			<td></td>
+			<td><p>{{ game.rule_consequent }}</p></td>
+			<td></td>
+		</tr>
+		</tbody>
+	</table>
+	<br>
+	<p>
+		In order to attack this successfully, you must demonstrate that the rule's antecedent (the IF part of
+		the rule) does not imply the rule's consequent (the THEN part of the rule). <strong><i>Consider only the
+		rule's antecedent and consequent as worded above.</i></strong>
+	</p>
+	<p>
+		Is the logical leap between the two too much? Is it possible for the rule's antecedent to be true but the
+		rule's consequent to be false? Explain carefully; this will be reviewed by your opponent and rejected if
+		they believe it is unfair.
+	</p>
+	<br>
+	{% include 'wga/user/game/modals.html' with name='L3' %}
+	<br>
+	<br>
+
+	{% elif game_context == 'L4' %}
+
+	<!-- INSTRUCTIONS FOR ATTACKING LINK L4 -->
+	<table class="arg-graphic" style="border:dotted 1px black;">
+		<thead>
+		<tr>
+			<th style="width:33%;"></th>
+			<th style="width:33%;"></th>
+			<th style="width:33%;"></th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr align="center">
+			<td>{{ game.scenario.source_conclusion }}</td>
+			<td><span class="glyphicon glyphicon-arrow-left" style="font-size:24px"></span></td>
+			<td><p>{{ game.rule_consequent }}</p></td>
+		</tr>
+		</tbody>
+	</table>
+	<br>
+	<p>
+		In order to attack this successfully, you must demonstrate that the rule's consequent (the THEN part of
+		the rule) does not imply scenario 1's conclusion. <strong><i>Consider only the rule's consequent and
+		scenario 1's conclusion as worded above.</i></strong>
+	</p>
+	<p>
+		Are there additional details that are necessary but missing? Is the logical leap between the two too much?
+		Is it possible for the rule's consequent to be true but scenario 1's conclusion to be false? Explain
+		carefully; this will be reviewed by your opponent and rejected if they believe it is unfair.
+	</p>
+	<br>
+	{% include 'wga/user/game/modals.html' with name='L4' %}
+	<br>
+	<br>
+
+	{% elif game_context == 'L5' %}
+
+	<!-- INSTRUCTIONS FOR ATTACKING LINK L5 -->
+	<table class="arg-graphic" style="border:dotted 1px black;">
+		<thead>
+		<tr>
+			<th style="width:33%;"></th>
+			<th style="width:33%;"></th>
+			<th style="width:33%;"></th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr align="center">
+			<td><p>{{ game.rule_consequent }}</p></td>
+			<td><span class="glyphicon glyphicon-arrow-right" style="font-size:24px"></span></td>
+			<td>{{ game.scenario.target_conclusion }}</td>
+		</tr>
+		</tbody>
+	</table>
+	<br>
+	<p>
+		In order to attack this successfully, you must demonstrate that the rule's consequent (the THEN part of
+		the rule) does not imply scenario 2's conclusion. <strong><i>Consider only the rule's consequent and
+		scenario 2's conclusion as worded above.</i></strong>
+	</p>
+	<p>
+		Are there additional details that are necessary but missing? Is the logical leap between the two too much?
+		Is it possible for the rule's consequent to be true but scenario 2's conclusion to be false? Explain
+		carefully; this will be reviewed by your opponent and rejected if they believe it is unfair.
+	</p>
+	<br>
+	{% include 'wga/user/game/modals.html' with name='L5' %}
+	<br>
+	<br>
+
+	{% elif game_context == 'Attack Response' %}
+
+	<!-- INSTRUCTIONS FOR RESPONDING TO AN ATTACK -->
+	<p>
+		You opponent was given the instructions inside the dashed box and has pointed out a weakness in the
+		argument: <font color="red"><b>"{{ game.get_context_data.1 }}"</b></font>
+	</p>
+	<br>
+	<div class="container-fluid" style="border:dotted 1px black;padding-bottom:10px;padding-top:10px;">
+		<br>
+		{% include 'wga/user/game/instructions.html' with game_context=game.get_context_data.0 %}
+	</div>
+	<br>
+	<p>
+		Decide whether to accept or reject this critique. If you decide to reject, explain your decision carefully
+		as it will be reviewed by your opponent. If you decide to accept, you will be given another turn to fix the
+		problem in the future.
+	</p>
+
+	{% elif game_context == 'Update Rule' %}
+
+	<!-- INSTRUCTIONS FOR UPDATING THE RULE -->
+	<p>
+		You must ensure that the rule explains the two conclusions given and is immune to any successful attacks
+		that your opponent has sent. The current rule is:
+		<b>IF</b> {{ game.rule_antecedent }}, <b>THEN</b> {{ game.rule_consequent }}.
+	</p>
+	<br>
+	{% include 'wga/user/game/modals.html' with name='rule' %}
+	<br>
+	<br>
+
+	{% elif game_context == 'Update Facts' %}
+
+	<!-- INSTRUCTIONS FOR UPDATING THE FACTS -->
+	<p>
+		Which pair of facts would you like to replace, and with what text would you like to replace them?
+	</p>
+	<br>
+	{% include 'wga/user/game/modals.html' with name='update_facts' %}
+	<br>
+	<br>
+
+	{% elif game_context == 'Proposed Edit' %}
+
+	<!-- INSTRUCTIONS FOR RESPONDING TO AN 'UPDATE FACTS' PROPOSAL -->
+	{% if game.get_context_data.5 == "" %}
+	<p>Your opponent has proposed to re-phrase some of the facts.</p>
+	{% else %}
+	<p>
+		Your opponent has rejected your proposed re-phrasing of the facts. The reason they gave was:
+		<font color="red"><b>"{{ game.get_context_data.5 }}"</b></font>. Instead, your opponent proposes the
+		following change.
+	</p>
+	{% endif %}
+	<div class="row">
+		<div class="col-md-6">
+			<b>Original Facts</b>
+			<ol>
+				<li>{{ game.get_context_data.0 }}</li>
+				<li>{{ game.get_context_data.1 }}</li>
+			</ol>
+		</div>
+		<div class="col-md-6">
+			<b>Proposed Facts</b>
+			<ol>
+				<li>{{ game.get_context_data.2 }}</li>
+				<li>{{ game.get_context_data.3 }}</li>
+			</ol>
+		</div>
+	</div>
+
+	{% elif game_context == 'Add Facts' %}
+
+	<!-- INSTRUCTIONS FOR ADDING NEW FACTS -->
+	<p>
+		Add a pair of facts about scenarios 1 and 2. The facts must be related to each other (even if they
+		are opposites). The facts must be relevant to the conclusions on both sides, and you need to explain why
+		adding these facts are relevant and necessary.
+	</p>
+	<br>
+	{% include 'wga/user/game/modals.html' with name='add_facts' %}
+	<br>
+	<br>
+
+	{% elif game_context == 'Proposed Add' %}
+
+	<!-- INSTRUCTIONS FOR RESPONDING TO AN 'ADD FACTS' PROPOSAL -->
+	{% if game.get_context_data.2 == "" %}
+	<p>
+		Your opponent has proposed to add a new pair of facts. The reason they gave was:
+		<font color="red"><b>"{{ game.get_context_data.2 }}"</b></font>. The facts they propose adding are:
+	</p>
+	{% else %}
+	<P>
+		Your opponent has rejected your proposed adding of new facts. The reason they gave was:
+		<font color="red"><b>"{{ game.get_context_data.2 }}"</b></font>. Instead, your opponent proposes the
+		following change.
+	</p>
+	{% endif %}
+	<ol>
+		<li>{{ game.get_context_data.0 }}</li>
+		<li>{{ game.get_context_data.1 }}</li>
+	</ol>
+
+	{% elif game_context == 'Pass' %}
+
+	<!-- INSTRUCTIONS FOR PASSING -->
+	<p>
+		You are about to pass your turn. Be warned that two consecutive passes will end the game.
+	</p>
+
+	{% elif game_context == 'Example: The Rule' %}
+
+	<!-- EXAMPLE: THE RULE -->
+	<p>Let's say you wanted to explain the following two scenarios:</p>
+	<ol>
+		<li>
+			<b>Facts:</b> The chicken saw food on the other side of the road.<br>
+			<b>Conclusion:</b> The chicken crossed the road.
+		</li>
+		<li>
+			<b>Facts:</b> The old lady's grandson was on the other side of the street.<br>
+			<b>Conclusion:</b> The old lady crossed the street.
+		</li>
+	</ol>
+	<p>
+		Now if you wanted a rule that wanted to explain both of the above, a good candidate would be:
+		<b>IF</b> a bird sees something it wants on the other side of the street, <b>THEN</b> it will
+		cross the street.
+	</p>
+	<p>
+		This rule certainly explains scenario 1, but it fails to explain scenario 2 because the
+		old lady is (presumably) not a bird. So a better rule is: <b>IF</b> anything sees something it
+		wants on the other side of the street, <b>THEN</b> it will cross the street.
+	</p>
+
+	{% elif game_context == 'Example: Update Facts' %}
+
+	<!-- EXAMPLE: UPDATING FACTS -->
+	<p>
+		A player generally updates the facts in the scenarios to make them better support the
+		conclusion. For example, suppose that your rule is "<b>IF</b> a bird sees something it wants on
+		the other side of the street, <b>THEN</b> it will cross the street" and your scenarios say:
+	</p>
+	<ol>
+		<li><b>Facts:</b> The chicken saw food</li>
+		<li><b>Facts:</b> The old lady's grandson was near the food.</li>
+	</ol>
+	<p>
+		You might update the facts as follows to make them better fit the part of the rule that talks
+		about "the street":
+	</p>
+	<ol>
+		<li><b>Facts:</b> The chicken saw food on the other side of the street.</li>
+		<li><b>Facts:</b> The old lady's grandson was on the other side of the street.</li>
+	</ol>
+	<p>
+		Be aware that <b><i>updating facts must be approved by your opponent!</i></b>
+		Try phrasing these facts in a way that is uncontroversial (i.e., there should be little to no
+		interpretation needed when reading these facts).
+	</p>
+
+	{% elif game_context == 'Example: Add Facts' %}
+
+	<!-- EXAMPLE: ADDING FACTS -->
+	<p>
+		There must be a fact for each scenario. So if you want to emphasize that some property holds in
+		one scenario, you should specify whether it also holds on the other side. For example, let's say
+		you want to add the fact that chickens have wings, because it's relevant to the conclusion you
+		want to prove. You need to also introduce the analogous fact relating to old women:
+	</p>
+	<ol>
+		<li><b>Fact:</b> Chickens have wings.</li>
+		<li><b>Fact:</b> Old women do not have wings.</li>
+	</ol>
+	<p>
+		Be aware that <b><i>adding facts must be approved by your opponent!</i></b>
+		Try phrasing these facts in a way that is uncontroversial (i.e., there should be little to no
+		interpretation needed when reading these facts).
+	</p>
+
+	{% elif game_context == 'Example: L1' %}
+
+	<!-- EXAMPLE: L1 -->
+	<p>
+		A critic might attack L.1 if they think that scenario 1 fails to correspond with the <b>IF</b>
+		part of the rule (or vice-versa).
+	</p>
+	<p>
+		For example, suppose that your rule begins with "<b>IF</b> a bird sees something it wants on the
+		other side of the street" and scenario 1 has these facts:
+	</p>
+	<ul>
+		<li>The chicken saw a predator.</li>
+		<li>The chicken has feathers.</li>
+		<li>The chicken sees roadkill on the other side of the street.</li>
+	</ul>
+	<p>
+		Since there is nothing in the facts which suggest that the chicken saw something it wants on the
+		other side of the street, the <b>IF</b> part of the rule is not properly justified and the
+		attack should succeed.
+	</p>
+
+	{% elif game_context == 'Example: L2' %}
+
+	<!-- EXAMPLE: L2 -->
+	<p>
+		A critic might attack L.2 if they think that scenario 2 fails to correspond with the <b>IF</b>
+		part of the rule (and vice-versa).
+	</p>
+	<p>
+		For example, suppose that your rule begins with "<b>IF</b> a bird sees something it wants on the
+		other side of the street" and scenario 2 has these facts:
+	</p>
+	<ul>
+		<li>The chicken saw a predator.</li>
+		<li>The chicken has feathers.</li>
+		<li>The chicken sees roadkill on the other side of the street.</li>
+	</ul>
+	<p>
+		Since there is nothing in the facts which suggest that the chicken saw something it wants on the
+		other side of the street, the <b>IF</b> part of the rule is not properly justified and the
+		attack should succeed.
+	</p>
+
+	{% elif game_context == 'Example: L3' %}
+
+	<!-- EXAMPLE: L3 -->
+	<p>
+		A critic might attack L.3 if they think that the <b>IF</b> part of the rule doesn't really imply
+		the <b>THEN</b> part of the rule.
+	</p>
+	<p>
+		For example, suppose that your rule is "<b>IF</b> a bird sees a predator on the other side of
+		the street, <b>THEN</b> it will cross the street." The critic might justify this attack by
+		saying "The chicken wouldn't move towards its predator."
+	</p>
+
+	{% elif game_context == 'Example: L4' %}
+
+	<!-- EXAMPLE: L4 -->
+	<p>
+		In this link, the central rule gets applied to scenario 1. A successful attack on this link
+		needs an explanation of why the rule is not applied correctly.
+	</p>
+	<p>
+		For example, suppose that your rule ends with "<b>THEN</b> it will cross the street." Suppose
+		also that scenario 1's conclusion is "The chicken ate the food." In this case, the scenario's
+		conclusion definitely doesn't follow from the rule and the attack should succeed.
+	</p>
+
+	{% elif game_context == 'Example: L5' %}
+
+	<!-- EXAMPLE: L5 -->
+	<p>
+		In this link, the central rule gets applied to scenario 2. A successful attack on this link
+		needs an explanation of why the rule is not applied correctly.
+	</p>
+	<p>
+		For example, suppose that your rule ends with "<b>THEN</b> it will cross the street." Suppose
+		also that scenario  2's conclusion is "The chicken ate the food." In this case, the scenario's
+		conclusion definitely doesn't follow from the rule and the attack should succeed.
+	</p>
+
+	{% endif %}
+</div>

@@ -1,0 +1,35 @@
+{% extends 'wga/user/container.html' %}
+{% load static %}
+{% block body_content %}
+<div class="jumbotron">
+    <h1>Login</h1>
+    <div class="row">
+        <div class="col-md-6">
+            {% if request.session.user_identifier %}
+            <p>
+                Welcome {{ user.name }}!
+            </p>
+            {% else %}
+            <p>
+                Welcome! If you haven't already, go to mTurk and look for the task (HIT) titled <i>Study on Critical Thinking</i>. Sign up for that. It will tell you what the key is.
+            </p>
+            <ul>
+                <li>In the previous HIT you already did (where you chose the times you were available), you should have chosen a username.</li>
+                <li><b>DO NOT</b> log in until a few minutes before your scheduled time.</li>
+                <li>If you have any questions or problems logging in, plese go to the FAQ page or contact Dr. John Licato (amhr.usf@gmail.com).
+            </ul>
+            {% endif %}
+        </div>
+        <div class="col-md-6">
+            {% if not request.session.user_identifier %}
+            {% include 'wga/user/form.html' %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% if request.session.ready %}
+<script>
+    $.getScript("{% static 'wga/user/navigation.js' %}");
+</script>
+{% endif %}
+{% endblock %}

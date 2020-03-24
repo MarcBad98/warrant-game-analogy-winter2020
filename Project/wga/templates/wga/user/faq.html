@@ -1,0 +1,46 @@
+{% extends 'wga/user/container.html' %}
+{% load static %}
+{% block body_content %}
+<h4>Frequently Asked Questions (FAQ)</h4>
+<p><b>What is this research study?</b></p>
+<p>
+    You are helping us study how humans approach analogical reasoning: What kinds of arguments do people make? What similarities
+    do people find important?
+</p>
+<br>
+<p><b>How do I log in?</b></p>
+<p>
+    To participate in this research study, you must have already submitted the HIT titled <i>Study on Critical Thinking - P0 Scheduling</i>. There,
+    you were asked to enter an anonymous username. You will be using that same exact username when you log in.
+</p>
+<br>
+<p><b>I do not have the log in key. How can I get my key?</b></p>
+<p>
+    Please go to mTurk and look for the HIT titled <i>Study on Critical Thinking</i>. If you already completed the HIT titled
+    <i>Study on Critical Thinking - P0 Scheduling</i>, then you were given a qualification to do <i>Study on Critical Thinking</i>.
+    You will find the log in key in that HIT.
+</p>
+<br>
+<p><b>My credentials do not seem to work. Am I doing something wrong?</b></p>
+<p>
+    Please review this list:
+</p>
+<ul>
+    <li>Are you scheduled for the correct date & time?</li>
+    <li>The username is case-sensitive; please make sure you have the correct capitalization</li>
+    <li>If you still cannot log in, email Dr. John Licato (amhr.usf@gmail.com)</li>
+</ul>
+<br>
+<p><b>My opponent is unresponsive. What do I do?</b></p>
+<p>
+    We will be actively monitoring your tasks. If you have an unresponsive opponent, please be patient with us as we partner you with new, responsive
+    opponents. Understand that an unresponsive opponent will not affect your payment nor the time you spend on the tasks; you will spend no more than 90
+    minutes.
+</p>
+<br>
+{% if request.session.ready %}
+<script>
+    $.getScript("{% static 'wga/user/navigation.js' %}");
+</script>
+{% endif %}
+{% endblock %}

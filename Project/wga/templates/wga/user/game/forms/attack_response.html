@@ -1,0 +1,20 @@
+{% load widget_tweaks %}
+<!-- ATTACK RESPONSE FORM -->
+<div class="well">
+    {% include 'wga/user/game/instructions.html' with game_context='Attack Response' %}
+    <div class="form-group">
+        <b>Is their critique reasonable?</b>
+        <br>
+        {% for radio in form.response %}
+        <label class="radio-inline" for="{{ radio.id_for_label }}">
+            {{ radio.tag }}{{ radio.choice_label }}
+        </label>
+        {% endfor %}
+    </div>
+    <div id="reject-attack" style="display:none;">
+        <div class="form-group">
+            {{ form.explanation.label_tag }}
+            {% render_field form.explanation class="form-control" %}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+{% load widget_tweaks %}
+<!-- ADD FACTS FORM -->
+<div id="add-facts" style="display:none;">
+    <div class="well">
+        {% include 'wga/user/game/instructions.html' with game_context='Add Facts' %}
+        <div class="form-group">
+            <div class="input-group">
+                <span class="input-group-addon"><b>Fact 1</b></span>
+                {% render_field form.source_add class="form-control" %}
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-group">
+                <span class="input-group-addon"><b>Fact 2</b></span>
+                {% render_field form.target_add class="form-control" %}
+            </div>
+        </div>
+        <div class="form-group">
+            {{ form.explain_add.label_tag }}
+            {% render_field form.explain_add class="form-control" %}
+        </div>
+    </div>
+</div>
