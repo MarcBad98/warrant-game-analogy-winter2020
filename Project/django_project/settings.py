@@ -11,8 +11,8 @@ ALLOWED_HOSTS = [u'amhrlab.com', u'www.amhrlab.com']
 # Deployment settings
 SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_BROWSER_XSS_FILTER = True
-#SESSION_COOKIE_SECURE = True          # TODO: ensures cookies are sent via HTTPS
-#CSRF_COOKIE_SECURE = True             # TODO: ensures CSRF token is sent via HTTPS
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
 X_FRAME_OPTIONS = 'DENY'
 
 
