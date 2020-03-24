@@ -1,0 +1,49 @@
+{% extends 'wga/user/container.html' %}
+{% load static %}
+{% block body_content %}
+<div class="jumbotron">
+    <h1>Instructions</h1>
+    <div class="row">
+        <div class="col-md-6">
+            {% if user.group.case == 'Non-control' %}
+            <p>
+                Welcome {{ user.name }} to the Warrant Game: Analogy interface. Before continuing on with your task,
+                please watch the 15-minute instructional video. Afterwards, enter the password found within the video to
+                continue. If the video is taking long to render, please try disabling any ad blocker or anti-virus
+                software for this website.
+            </p>
+            <video width="100%" height="100%" controls>
+                <source src="{% static 'wga/user/instructional.mov' %}" type="video/mp4">
+                Your browser does not support the HTML5 video tag. Please contact the administrators for further
+                instructions.
+            </video>
+            {% elif user.group.case == 'Control' %}
+            <p>
+                In this task, you and your partner(s) are working together to improve and explain an analogy. This analogy
+                was started by someone else, but their work is very preliminary and needs improvement. You and your
+                partner should revise this information and fully explain the analogy that the information suggests.
+                You are given 15 minutes to complete the task; after the 15 minutes, you will be assigned a new task
+                (the same exact task, but with a randomly assigned analogy and partner).
+            </p>
+            <p>
+                Once you have reviewed the instructions, please click the 'Submit' button.
+            </p>
+            {% endif %}
+        </div>
+        <div class="col-md-6">
+            {% if request.session.ready %}
+            <p>
+                Thank you {{ user.name }} for participating! You may now start. Your navigation bar has been updated.
+            </p>
+            {% else %}
+            {% include 'wga/user/form.html' %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% if request.session.ready %}
+<script>
+    $.getScript("{% static 'wga/user/navigation.js' %}");
+</script>
+{% endif %}
+{% endblock %}

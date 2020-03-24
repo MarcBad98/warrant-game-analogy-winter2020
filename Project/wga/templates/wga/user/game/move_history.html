@@ -1,0 +1,26 @@
+{% if moves|length != 0 %}
+<br>
+<br>
+<div>
+    <b>Last 3 Moves:</b>
+    <ul>
+        {% for move in moves|slice:"-3:" %}<li>{{ move }}</li>{% endfor %}
+    </ul>
+</div>
+<div class="panel-group">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="panel-title">
+                <a data-toggle="collapse" href="#move-history">Move History</a>
+            </div>
+            <div id="move-history" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <ul>
+                        {% for move in moves %}<li>{{ move }}</li>{% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}

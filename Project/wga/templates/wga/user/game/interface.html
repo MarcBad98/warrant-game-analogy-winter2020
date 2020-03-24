@@ -1,0 +1,16 @@
+{% load static %}
+<div class="row">
+    <div class="col-md-6">
+        <div class="alert alert-info">
+            You are the <strong>{% if is_critic %}Critic{% else %}Advocate{% endif %}</strong> in this argument.
+        </div>
+        {% include 'wga/user/game/argument.html' %}
+        {% include 'wga/user/game/move_history.html' %}
+    </div>
+    <div class="col-md-6">
+        {% include 'wga/user/game/move_form.html' %}
+    </div>
+</div>
+<script>
+    $.getScript("{% static 'wga/user/interface.js' %}");
+</script>

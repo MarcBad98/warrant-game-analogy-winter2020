@@ -1,0 +1,15 @@
+{% extends 'wga/user/container.html' %}
+{% load static %}
+{% block body_content %}
+<div id="game-interface">
+    {% if user.group.case == 'Non-control' %}
+    {% include 'wga/user/game/interface.html' %}
+    {% elif user.group.case == 'Control' %}
+    {% include 'wga/user/chat/interface.html' %}
+    {% endif %}
+</div>
+<script>
+    $.getScript("{% static 'wga/user/game.js' %}");
+    $.getScript("{% static 'wga/user/navigation.js' %}");
+</script>
+{% endblock %}

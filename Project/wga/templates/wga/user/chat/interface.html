@@ -1,0 +1,30 @@
+{% load static %}
+<div class="row">
+    <div class="col-md-6">
+        <h4>{{ game.scenario.name }}</h4>
+        <p>
+            The people who have started this analogy have observed that:
+            {% for fact in game.scenario.facts.all %}
+            {% if game.scenario.facts.all.count == 2 %}
+            {% if forloop.last %}and "{{ fact.source_fact }}"{% else %}"{{ fact.source_fact }}" {% endif %}
+            {% else %}
+            {% if forloop.last %}and "{{ fact.source_fact }}"{% else %}"{{ fact.source_fact }}," {% endif %}
+            {% endif %}
+            {% endfor %}
+            lead to the conclusion that {{ game.scenario.source_conclusion }}. They have noted that this is similar in some
+            ways to:
+            {% for fact in game.scenario.facts.all %}
+            {% if game.scenario.facts.all.count == 2 %}
+            {% if forloop.last %}and "{{ fact.target_fact }}"{% else %}"{{ fact.target_fact }}" {% endif %}
+            {% else %}
+            {% if forloop.last %}and "{{ fact.target_fact }}"{% else %}"{{ fact.target_fact }}," {% endif %}
+            {% endif %}
+            {% endfor %}
+            which lead to the conclusion that {{ game.scenario.target_conclusion }}. Please fully explain what the two
+            conclusions have in common, updating their supporting facts as needed to create a good comparison.
+        </p>
+    </div>
+    <div class="col-md-6">
+        <iframe src='https://minnit.chat/amhr{{ game.chat }}?embed&nickname={{ user.name }}' style='border:none;width:90%;height:500px;' allowTransparency='true'></iframe>
+    </div>
+</div>

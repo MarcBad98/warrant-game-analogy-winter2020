@@ -1,0 +1,34 @@
+{% extends 'wga/admin/container.html' %}
+{% load static %}
+{% block body_content %}
+<table class="table">
+    <thead>
+    <tr>
+        <th class="text-center" style="width:5%;">Report ID</th>
+        <th class="text-center" style="width:5%;">Game ID</th>
+        <th class="text-center" style="width:10%;">User</th>
+        <th class="text-center" style="width:25%;">Report Description</th>
+        <th class="text-center" style="width:25%;">Admin Comments</th>
+        <th class="text-center" style="width:25%;">Actions</th>
+        <th class="text-center" style="width:5%;">Resolved?</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for report in object_list %}
+    <tr>
+        <td class="text-center">{{ report.id }}</td>
+        <td class="text-center">{{ report.game.id }}</td>
+        <td class="text-center">{{ report.user }}</td>
+        <td>{{ report.text }}</td>
+        <td>{{ report.note }}</td>
+        <td class="text-center">
+            {% if not report.resolved %}
+            <button class="btn btn-default" onclick="window.location.href = '{% url 'moderator:report-resolve' report_id=report.id %}'">Resolve</button>
+            {% endif %}
+        </td>
+        <td class="text-center">{% if report.resolved %}&#10004;{% else %}&#10008;{% endif %}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

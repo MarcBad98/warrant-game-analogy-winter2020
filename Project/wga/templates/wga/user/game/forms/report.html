@@ -1,0 +1,11 @@
+{% load widget_tweaks %}
+<!-- CONTACT ADMINISTRATORS FORM -->
+<div id="report" style="display:none;">
+    <div class="well">
+        {% include 'wga/user/game/instructions.html' with game_context='Report' %}
+        <div class="form-group">
+            {{ form.text.label_tag }}
+            {% render_field form.text class="form-control" %}
+        </div>
+    </div>
+</div>

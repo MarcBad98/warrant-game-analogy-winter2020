@@ -1,0 +1,27 @@
+{% extends 'wga/admin/container.html' %}
+{% load static %}
+{% block body_content %}
+<div class="row">
+    <div class="col-md-6">
+        {% if announcement %}
+        <p>
+            Send an announcement to all mTurk workers in {{ object.name }}. The message will be displayed in each mTurk
+            worker's message list (alongside any individual messages they may have received) marked as [ANNOUNCEMENT].
+        </p>
+        {% else %}
+        <p>
+            Send an individualized message to {{ object.user.name }} in {{ object.advocacy }}. That message will only show
+            for the mTurk worker in the game you chose. It will be displayed in their message list marked [MESSAGE].
+        </p>
+        {% endif %}
+        <ul id="message-list" style="list-style:none;">
+            {% for message in object.messages.all %}
+            <li class="message">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="col-md-6">
+        {% include 'wga/admin/form.html' %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'wga/admin/container.html' %}
+{% load widget_tweaks %}
+{% block body_content %}
+<h4>Report on {{ object.game }}</h4>
+<div class="row">
+    <div class="col-md-6">
+        {% include 'wga/user/game/argument.html' with game=object.game %}
+        {% include 'wga/user/game/move_history.html' with game=object.game %}
+    </div>
+    <div class="col-md-6">
+        <p>
+            {% if object.game.adv_info.user == object.user %}
+            {{ object.user }} (Advocate) reported {{ object.game.crt_info.user }} (Critic) for:
+            {% else %}
+            {{ object.user }} (Critic) reported {{ object.game.adv_info.user }} (Advocate) for:
+            {% endif %}
+            "{{ object.text }}".
+        </p>
+        {% include 'wga/admin/form.html' %}
+    </div>
+</div>
+{% endblock %}

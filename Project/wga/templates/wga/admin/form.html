@@ -1,0 +1,12 @@
+{% load widget_tweaks %}
+<form id="admin-form" method="POST">
+    {% csrf_token %}
+    {% for field in form %}
+    <div class="form-group">
+        {{ field.label_tag }}
+        {% for error in field.errors %}<span class="text-danger"> {{ error|escape }}</span>{% endfor %}
+        {% render_field field class="form-control" %}
+    </div>
+    {% endfor %}
+    <button class="btn btn-default btn-lg" type="submit">Submit</button>
+</form>

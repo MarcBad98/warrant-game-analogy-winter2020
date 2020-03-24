@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+{% load static %}
+<html>
+<head>
+    <title>Administrator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>             <!-- JQuery -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"> <!-- Bootstrap 3 CSS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>          <!-- Bootstrap 3 JS -->
+    <script src="{% static 'wga/reconnecting-websocket.min.js' %}"></script>                             <!-- Reconnecting WebSockets JS Plugin -->
+    <script src="{% static 'wga/jquery.serializeObject.min.js' %}"></script>                             <!-- SerializeObject JS Plugin -->
+    <link rel="stylesheet" type="text/css" href="{% static 'wga/wga.css' %}">                            <!-- Our Customized Stylesheet -->
+</head>
+<body>
+<!-- Bootstrap 3 Navigation Bar -->
+<nav class="navbar navbar-default navbar-static-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="{% url 'moderator:index' %}">Admin</a>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="{% url 'moderator:list-of-groups' %}">Game Sessions</a></li>
+                <li><a href="{% url 'moderator:list-of-reports' %}">Reports</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- Bootstrap 3 Main Panel Container -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    You are logged in as <strong>{{ user.username }} (Admin)</strong>.
+                </div>
+                <div class="panel-body">
+                    {% block body_content %}
+                    Missing
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

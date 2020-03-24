@@ -1,0 +1,138 @@
+{% if name == 'rule' %}
+
+<button type="button" data-toggle="modal" data-target="#rule-modal" class="btn btn-md btn-block">Click here to see an example</button>
+<div class="modal fade" id="rule-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4>The Rule</h4>
+            </div>
+            <div class="modal-body">
+                {% include 'wga/user/game/instructions.html' with game_context='Example: The Rule' %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% elif name == 'update_facts' %}
+
+<button type="button" data-toggle="modal" data-target="#update-facts-modal" class="btn btn-md btn-block">Click here to see an example</button>
+<div class="modal fade" id="update-facts-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" data-dismiss="modal">&times;</button>
+                <h4>Updating The Facts</h4>
+            </div>
+            <div class="modal-body">
+                {% include 'wga/user/game/instructions.html' with game_context='Example: Update Facts' %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% elif name == 'add_facts' %}
+
+<button type="button" data-toggle="modal" data-target="#add-facts-modal" class="btn btn-md btn-block">Click here to see an example</button>
+<div class="modal fade" id="add-facts-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" data-dismiss="modal">&times;</button>
+                <h4>Adding New Facts</h4>
+            </div>
+            <div class="modal-body">
+                {% include 'wga/user/game/instructions.html' with game_context='Example: Add Facts' %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% elif name == 'L1' %}
+
+<button type="button" data-toggle="modal" data-target="#L1-modal" class="btn btn-md btn-block">Click here to see an example</button>
+<div class="modal fade" id="L1-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4>Attacking link L.1</h4>
+            </div>
+            <div class="modal-body">
+                {% include 'wga/user/game/instructions.html' with game_context='Example: L1' %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% elif name == 'L2' %}
+
+<button type="button" data-toggle="modal" data-target="#L2-modal" class="btn btn-md btn-block">Click here to see an example</button>
+<div class="modal fade" id="L2-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4>Attacking link L.2</h4>
+            </div>
+            <div class="modal-body">
+                {% include 'wga/user/game/instructions.html' with game_context='Example: L2' %}
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% elif name == 'L3' %}
+
+<button type="button" data-toggle="modal" data-target="#L3-modal" class="btn btn-md btn-block">Click here to see an example</button>
+<div class="modal fade" id="L3-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4>Attacking link L.3</h4>
+            </div>
+            <div class="modal-body">
+                {% include 'wga/user/game/instructions.html' with game_context='Example: L3' %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% elif name == 'L4' %}
+
+<button type="button" data-toggle="modal" data-target="#L4-modal" class="btn btn-md btn-block">Click here to see an example</button>
+<div class="modal fade" id="L4-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4>Attacking link L.4</h4>
+            </div>
+            <div class="modal-body">
+                {% include 'wga/user/game/instructions.html' with game_context='Example: L4' %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% elif name == 'L5' %}
+
+<button type="button" data-toggle="modal" data-target="#L5-modal" class="btn btn-md btn-block">Click here to see an example</button>
+<div class="modal fade" id="L5-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4>Attacking link L.5</h4>
+            </div>
+            <div class="modal-body">
+                {% include 'wga/user/game/instructions.html' with game_context='Example: L5' %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endif %}

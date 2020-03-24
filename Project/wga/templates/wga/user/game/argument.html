@@ -1,0 +1,108 @@
+<table class="arg-graphic">
+    <thead>
+    <tr>
+        <th style="width:35%;">Scenario 1</th>
+        <th></th>
+        <th style="width:25%;">Current Rule</th>
+        <th></th>
+        <th style="width:35%;">Scenario 2</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr align="center">
+        <td>
+            <table class="table fact-table">
+                <thead>
+                <tr>
+                    <th>Facts</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>{% for fact in game.factpair_set.all %}<p>{{ fact.source_fact }}</p>{% endfor %}</td>
+                </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+            <p><font color="red"><b>L.1</b></font></p>
+            <span class="glyphicon glyphicon-arrow-right" style="font-size:24px"></span>
+        </td>
+        <td>
+            <p><b>IF</b></p>
+            <p>{{ game.rule_antecedent }}</p>
+        </td>
+        <td>
+            <p><font color="red"><b>L.2</b></font></p>
+            <span class="glyphicon glyphicon-arrow-left" style="font-size:24px"></span>
+        </td>
+        <td>
+            <table class="table fact-table">
+                <thead>
+                <tr>
+                    <th>Facts</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>{% for fact in game.factpair_set.all %}<p>{{ fact.target_fact }}</p>{% endfor %}</td>
+                </tr>
+                </tbody>
+            </table>
+        </td>
+    </tr>
+    <tr align="center">
+        <td>and</td>
+        <td></td>
+        <td>
+            <p><font color="red"><b>L.3</b></font></p>
+            <p>implies</p>
+            <span class="glyphicon glyphicon-arrow-down" style="font-size:24px"></span>
+        </td>
+        <td></td>
+        <td>and</td>
+    </tr>
+    <tr align="center">
+        <td>
+            <table class="table fact-table">
+                <thead>
+                <tr>
+                    <th>Conclusion</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>{{ game.scenario.source_conclusion }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </td>
+        <td>
+            <p><font color="red"><b>L.4</b></font></p>
+            <span class="glyphicon glyphicon-arrow-left" style="font-size:24px"></span>
+        </td>
+        <td>
+            <p><b>THEN</b></p>
+            <p>{{ game.rule_consequent }}</p>
+        </td>
+        <td>
+            <p><font color="red"><b>L.5</b></font></p>
+            <span class="glyphicon glyphicon-arrow-right" style="font-size:24px"></span>
+        </td>
+        <td>
+            <table class="table fact-table">
+                <thead>
+                <tr>
+                    <th>Conclusion</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>{{ game.scenario.target_conclusion }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </td>
+    </tr>
+    </tbody>
+</table>

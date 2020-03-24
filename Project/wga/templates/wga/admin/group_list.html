@@ -1,0 +1,35 @@
+{% extends 'wga/admin/container.html' %}
+{% load static %}
+{% block body_content %}
+<table class="table">
+    <thead>
+    <tr>
+        <th class="text-center" style="width:15%;">Game Group</th>
+        <th class="text-center" style="width:10%;">Games</th>
+        <th class="text-center" style="width:10%;">Players</th>
+        <th class="text-center" style="width:15%;">Start Time (UTC-05:00)</th>
+        <th class="text-center" style="width:50%;">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for group in object_list|dictsort:"id" %}
+    <tr class="text-center">
+        <td>{{ group.name }} ({{ group.case }})</td>
+        <td>{{ group.num_games }}</td>
+        <td>{{ group.num_users }}</td>
+        <td>{{ group.start }}</td>
+        <td>
+            <button class="btn btn-default" type="button" onclick="window.location.href = '{% url 'moderator:group' group_name=group.name %}';">View Games</button>
+            {% if group.case == 'Non-control' %}
+            <button class="btn btn-default" type="button" onclick="window.location.href = '{% url 'moderator:group-add' group_name=group.name %}';">Add Games</button>
+            <button class="btn btn-default" type="button" onclick="window.location.href = '{% url 'moderator:messages' group_name=group.name url_key='announcement' %}';">Send Announcement</button>
+            <button class="btn btn-default" type="button" onclick="window.location.href = '{% url 'moderator:group-download' group_name=group.name %}';">Download JSON</button>
+            {% elif group.case == 'Control' %}
+            <button class="btn btn-default" type="button" onclick="window.location.href = '{% url 'moderator:group-shuffle' group_name=group.name %}';">Shuffle</button>
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
