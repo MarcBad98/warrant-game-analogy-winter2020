@@ -10,7 +10,7 @@ channels-redis==2.4.1
 constantly==15.1.0
 cryptography==2.8
 daphne==2.3.0
-Django==2.2.7
+Django==2.2.13
 django-widget-tweaks==1.4.5
 gevent==1.4.0
 greenlet==0.4.15
