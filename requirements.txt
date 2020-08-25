@@ -10,7 +10,7 @@ channels-redis==2.4.1
 constantly==15.1.0
 cryptography==2.8
 daphne==2.3.0
-Django==2.2.13
+Django>=2.2.13
 django-widget-tweaks==1.4.5
 gevent==1.4.0
 greenlet==0.4.15
@@ -26,6 +26,6 @@ PyHamcrest==1.9.0
 pytz==2019.3
 six==1.13.0
 sqlparse==0.3.0
-Twisted==19.10.0
+Twisted>=20.3.0
 txaio==18.8.1
 zope.interface==4.7.1
