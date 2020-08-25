@@ -1,0 +1,6 @@
+2020-08-25 20:57:05,643   DEBUG      Invalid form: Logged in before start time. {'name': 'Test07', 'key': 'pv4ygmm4ggzhlk7wbkx7'} (forms.py:60)
+2020-08-25 20:57:45,651   DEBUG      [pv4ygmm4ggzhlk7wbkx7] Login succeeded: {'name': 'Test07', 'key': 'pv4ygmm4ggzhlk7wbkx7'} (views.py:119)
+2020-08-25 20:57:54,317   DEBUG      [pv4ygmm4ggzhlk7wbkx7] Login succeeded: {'pwd': 'chicken-hawk'} (views.py:173)
+2020-08-25 20:59:22,715   DEBUG      [8c2aj5xq27iiy7evbm04] Login succeeded: {'name': 'Test05', 'key': '8c2aj5xq27iiy7evbm04'} (views.py:119)
+2020-08-25 20:59:24,524   DEBUG      [8c2aj5xq27iiy7evbm04] Login succeeded: {'pwd': 'chicken-hawk'} (views.py:173)
+2020-08-25 20:59:37,922   INFO       [pv4ygmm4ggzhlk7wbkx7] Processed Create Rule: "Created the rule: IF test, THEN test" (forms.py:232)

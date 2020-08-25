@@ -4,16 +4,16 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
-SECRET_KEY = # TODO: Set.
-DEBUG = False
-ALLOWED_HOSTS = [u'amhrlab.com', u'www.amhrlab.com']
+SECRET_KEY = 'development'
+DEBUG = True
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 # Deployment settings
-SECURE_CONTENT_TYPE_NOSNIFF = True
-SECURE_BROWSER_XSS_FILTER = True
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
-X_FRAME_OPTIONS = 'DENY'
+# SECURE_CONTENT_TYPE_NOSNIFF = True
+# SECURE_BROWSER_XSS_FILTER = True
+# SESSION_COOKIE_SECURE = True
+# CSRF_COOKIE_SECURE = True
+# X_FRAME_OPTIONS = 'DENY'
 
 
 # Application definition
@@ -82,8 +82,12 @@ CHANNEL_LAYERS = {
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'wga-dev',
+        'USER': 'wga-dev',
+        'PASSWORD': 'wga-dev',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 

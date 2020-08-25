@@ -1,0 +1,5 @@
+__pycache__/
+*.py[cod]
+env/
+# directory created after `python manage.py collectstatic`
+Project/django_project/static/
