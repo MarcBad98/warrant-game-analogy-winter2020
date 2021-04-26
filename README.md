@@ -59,8 +59,11 @@ Test09
 ### Creating Games
 
 1. Put the CSV containing player usernames in the `Project/game_sessions/` directory.
+
 2. Login using `localhost:8000/admin`.
+
 3. Navigate to `localhost:8000/wganalogy_app/moderator/`.
+
 4. Fill out the form on this web page. Note that the `Game Session Name` and `Number of mTurk Workers` must correspond to the CSV you created in Step 1.
 
 Note: Once the web application has been hosted, replace `localhost:8000` with the name of your website.
